@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Radar — pre-token protocols ranked by implied value (model radar-2)</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <span class="brand-name">TOKEN RADAR</span>
+    <span class="brand-sub">pre-token protocols, ranked by implied value</span>
+  </div>
+  <div class="top-meta" id="topMeta"></div>
+</header>
+
+<section class="hero">
+  <p class="hero-line">Every protocol in the snapshot that records no token yet — and is not a wrapped, staked or
+  bridged product of one that already trades — ranked by what its token would be worth if its record stayed
+  as it is. Each row carries the steps to farm it. Protocols whose token already trades are never ranked:
+  they sit in the <a href="#live">Live tokens</a> view at the market's own values, and their market
+  prices are what calibrate this board's model.</p>
+  <div class="stats" id="stats"></div>
+</section>
+
+<nav class="controls" id="controls" aria-label="Board controls">
+  <div class="seg" role="group" aria-label="Segment">
+    <button type="button" data-seg="all">All ranked</button>
+    <button type="button" data-seg="watchlist">Watchlist</button>
+    <button type="button" data-seg="early">Early radar</button>
+  </div>
+  <label class="ctl">Category
+    <select id="fCategory"></select>
+  </label>
+  <label class="ctl">Chain
+    <select id="fChain"></select>
+  </label>
+  <label class="ctl">Sort by
+    <select id="fSort">
+      <option value="implied">Implied value</option>
+      <option value="tvl">TVL</option>
+      <option value="growth">7-day growth</option>
+      <option value="age">Age (longest without a token)</option>
+      <option value="pertvl">Implied value per TVL</option>
+    </select>
+  </label>
+  <label class="ctl grow">Search
+    <input id="fQuery" type="search" placeholder="Name or slug…" autocomplete="off">
+  </label>
+  <span class="shown" id="shownCount"></span>
+</nav>
+
+<main>
+  <section id="boardWrap">
+    <table class="board" id="board">
+      <thead>
+        <tr>
+          <th class="num">#</th><th>Protocol</th><th>Category</th><th>Chains</th>
+          <th class="num">TVL</th><th class="num">7d</th><th class="num">Age</th><th>Tier</th>
+          <th class="num">Implied value</th><th class="num">per $ TVL</th>
+        </tr>
+      </thead>
+      <tbody id="boardBody"></tbody>
+    </table>
+    <p class="empty" id="boardEmpty" hidden>No protocol matches those filters. Loosen one and the board fills again.</p>
+  </section>
+
+  <section id="detail" hidden></section>
+
+  <section id="model" class="panel"></section>
+
+  <section id="live" class="panel"></section>
+</main>
+
+<footer class="foot" id="foot"></footer>
+
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
